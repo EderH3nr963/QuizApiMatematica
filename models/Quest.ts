@@ -14,7 +14,7 @@ class Quest extends Model<
   public image!: string;
   public texto!: string;
   public answers!: JSON;
-  public correct_answer_index!: number;
+  public correct_answer_index!: string;
   public peso!: number;
 }
 
@@ -39,7 +39,7 @@ Quest.init(
       allowNull: false,
     },
     correct_answer_index: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.CHAR,
       allowNull: false,
     },
     peso: {

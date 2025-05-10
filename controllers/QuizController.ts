@@ -3,7 +3,7 @@ import * as quizService from "../services/QuizService"; // ajuste conforme o cam
 
 export const startQuizController = async (req: Request, res: Response) => {
   try {
-    const currentUserId = (req as any).user?.id;
+    const currentUserId = (req as any).userId;
 
     const result = await quizService.startQuiz(currentUserId);
     res.status(200).json(result);
@@ -16,7 +16,7 @@ export const startQuizController = async (req: Request, res: Response) => {
 
 export const finishQuizController = async (req: Request, res: Response) => {
   try {
-    const currentUserId = (req as any).user?.id;
+    const currentUserId = (req as any).userId;
 
     const { responses } = req.body;
     if (!Array.isArray(responses) || responses.length < 20) {

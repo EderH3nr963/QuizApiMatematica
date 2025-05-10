@@ -21,9 +21,9 @@ export const resend2faValidator = [
 export const registerValidator = [
   body("email").isEmail().withMessage("Email inválido"),
   body("password")
-    .matches(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,17}$/)
+    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,17}$/)
     .withMessage(
       "A senha deve ter entre 8 e 17 caracteres, incluindo letras, números e pelo menos um caractere especial (@$!%*?&)"
     ),
-  body("name").notEmpty().withMessage("O nome é obrigatório"),
+  body("username").notEmpty().withMessage("O nome é obrigatório"),
 ];

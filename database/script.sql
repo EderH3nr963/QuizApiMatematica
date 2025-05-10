@@ -1,4 +1,9 @@
+-- Active: 1743824447804@@127.0.0.1@3306
 -- Tabela: user
+CREATE DATABASE quiz_math;
+
+USE quiz_math;
+
 CREATE TABLE user (
   id_user INT PRIMARY KEY AUTO_INCREMENT,
   username VARCHAR(20) NOT NULL,
@@ -16,7 +21,7 @@ CREATE TABLE Quest (
   image TEXT,
   texto TEXT NOT NULL,
   answers JSON NOT NULL,
-  correct_answer_index INT NOT NULL,
+  correct_answer_index CHAR(1) NOT NULL,
   peso INT NOT NULL
 );
 

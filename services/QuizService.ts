@@ -32,8 +32,10 @@ export const startQuiz = async (currentUserId: number) => {
 
 export const finishQuiz = async (
   currentUserId: number,
-  userResponses: number[]
+  userResponses: string[]
 ) => {
+  console.log(currentUserId);
+
   const redisKey = `start_quiz:user:${currentUserId}`;
   const quizData = await redisClient.hgetall(redisKey);
 
@@ -47,12 +49,12 @@ export const finishQuiz = async (
   const duration = Date.now() - Number(quizData.start_time);
 
   originalQuests.forEach((quest, index) => {
-    const correctIndex = Number(quest.correct_answer_index);
+    const correctIndex = quest.correct_answer_index;
     const userAnswer = userResponses[index];
 
-    if (typeof userAnswer === "number" && userAnswer === correctIndex) {
+    if (typeof userAnswer === "string" && userAnswer === correctIndex) {
       correctCount++;
-      totalScore += 10 * (quest.peso || 1); // peso padrão = 1 se não existir
+      totalScore += 10 * (quest.peso || 1) + Math.floor(0.1 * duration); // peso padrão = 1 se não existir
     }
   });
 
